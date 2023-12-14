@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ShuffleButton = () => {
-  return <button>Shuffle!</button>;
+const ShuffleButton = (props) => {
+  return <button onClick={props.handleClick}>Shuffle!</button>;
 };
 
 export default ShuffleButton;

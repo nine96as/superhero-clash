@@ -1,13 +1,26 @@
 import React from 'react';
-import { HeroCard, ShuffleButton, VillainCard } from '../../components';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchHeroes } from '../../action-creators/hero';
+import { CardContainer, ShuffleButton } from '../../components';
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const error = useSelector((state) => state.error);
+
+  const handleClick = () => {
+    dispatch(fetchHeroes());
+  };
+
   return (
     <>
+      {error && (
+        <div role='alert' id='error'>
+          {error.message}
+        </div>
+      )}
       <h1>Home</h1>
-      <HeroCard />
-      <VillainCard />
-      <ShuffleButton />
+      <CardContainer />
+      <ShuffleButton handleClick={handleClick} />
     </>
   );
 };
